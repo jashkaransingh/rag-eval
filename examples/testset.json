@@ -1,0 +1,38 @@
+[
+  {
+    "question": "What was Acme's Q3 revenue and what drove the growth?",
+    "relevant_ids": ["acme_q3.md:0"],
+    "reference_answer": "Q3 revenue was $42 million, up 38 percent year over year, driven by industrial automation contracts in the automotive sector.",
+    "metadata": {"category": "financials"}
+  },
+  {
+    "question": "What software platform was released in September and what changed?",
+    "relevant_ids": ["acme_q3.md:1"],
+    "reference_answer": "AcmeOS 4.2, which switched from ROS 1 to ROS 2 and added a low-latency vision pipeline running at 90 fps.",
+    "metadata": {"category": "software"}
+  },
+  {
+    "question": "Why did the Mark VII shipment slip?",
+    "relevant_ids": ["acme_q3.md:2"],
+    "reference_answer": "A firmware issue with the new joint controllers, traced to a CAN bus timing assumption that failed at higher gear reduction ratios.",
+    "metadata": {"category": "operations"}
+  },
+  {
+    "question": "How heavy is the Mark VII and what is its payload capacity?",
+    "relevant_ids": ["mark_vii_specs.md:0"],
+    "reference_answer": "It weighs 142 kilograms and has a continuous payload capacity of 120 kg, 180 kg peak.",
+    "metadata": {"category": "specs"}
+  },
+  {
+    "question": "What is the battery life of the Mark VII under peak load?",
+    "relevant_ids": ["mark_vii_specs.md:1"],
+    "reference_answer": "4 hours under sustained peak load, 6 hours under typical workload.",
+    "metadata": {"category": "specs"}
+  },
+  {
+    "question": "Which ROS versions does AcmeOS 4.2 support?",
+    "relevant_ids": ["mark_vii_specs.md:2"],
+    "reference_answer": "ROS 2 Humble and Iron.",
+    "metadata": {"category": "software"}
+  }
+]
