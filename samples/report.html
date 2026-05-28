@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RAG evaluation report</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+         max-width: 920px; margin: 40px auto; padding: 0 20px; color: #1a1a2e;
+         line-height: 1.5; }
+  h1 { font-size: 28px; margin-bottom: 4px; }
+  .meta { color: #555; font-size: 14px; margin-bottom: 24px; }
+  .metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+             gap: 12px; margin: 24px 0; }
+  .card { border: 1px solid #e3e3ef; border-radius: 10px; padding: 16px;
+          background: #fafaff; }
+  .card .name { font-size: 13px; color: #666; text-transform: lowercase; }
+  .card .value { font-size: 26px; font-weight: 700; margin-top: 4px; }
+  .card .bar { height: 6px; border-radius: 3px; margin-top: 8px;
+               background: linear-gradient(90deg, #6c7ce0 var(--pct), #e3e3ef var(--pct)); }
+  .case { border: 1px solid #e3e3ef; border-radius: 10px; padding: 16px;
+          margin: 14px 0; }
+  .case .q { font-weight: 600; }
+  .case .a { color: #333; margin: 8px 0; }
+  .scores { font-size: 13px; color: #555; }
+  .ids { font-size: 12px; color: #888; font-family: monospace; margin-top: 6px; }
+  code { background: #eef; padding: 1px 5px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<h1>RAG evaluation report</h1>
+<div class="meta">
+  adapter <code>ragqa</code> &middot; judge <code>stub</code> &middot;
+  6 cases &middot; latency p50 0.9ms / p95 0.9ms
+</div>
+<div class="metrics">
+<div class="card"><div class="name">hit@3</div><div class="value">1.000</div><div class="bar" style="--pct:100%"></div></div>
+<div class="card"><div class="name">recall@3</div><div class="value">1.000</div><div class="bar" style="--pct:100%"></div></div>
+<div class="card"><div class="name">precision@3</div><div class="value">0.333</div><div class="bar" style="--pct:33%"></div></div>
+<div class="card"><div class="name">mrr</div><div class="value">0.889</div><div class="bar" style="--pct:88%"></div></div>
+<div class="card"><div class="name">ndcg@3</div><div class="value">0.917</div><div class="bar" style="--pct:91%"></div></div>
+<div class="card"><div class="name">faithfulness</div><div class="value">0.630</div><div class="bar" style="--pct:63%"></div></div>
+<div class="card"><div class="name">answer_relevance</div><div class="value">0.526</div><div class="bar" style="--pct:52%"></div></div>
+<div class="card"><div class="name">context_precision</div><div class="value">0.742</div><div class="bar" style="--pct:74%"></div></div>
+<div class="card"><div class="name">answer_correctness</div><div class="value">0.338</div><div class="bar" style="--pct:33%"></div></div>
+</div>
+<h2>per-case results</h2>
+<div class="case"><div class="q">Q1. What was Acme&#x27;s Q3 revenue and what drove the growth?</div><div class="a">Based on the document: # Acme Robotics Quarterly Update [1]</div><div class="scores">hit@3=1.000, recall@3=1.000, precision@3=0.333, mrr=1.000, ndcg@3=1.000, faithfulness=0.650, answer_relevance=0.440, context_precision=0.720, answer_correctness=0.300</div><div class="ids">relevant: [&#x27;acme_q3.md:0&#x27;]<br>retrieved: [&#x27;acme_q3.md:0&#x27;, &#x27;mark_vii_specs.md:2&#x27;, &#x27;acme_q3.md:2&#x27;]</div></div>
+<div class="case"><div class="q">Q2. What software platform was released in September and what changed?</div><div class="a">Based on the document: Our software platform, AcmeOS 4.2, was released in September. The major change [1]</div><div class="scores">hit@3=1.000, recall@3=1.000, precision@3=0.333, mrr=1.000, ndcg@3=1.000, faithfulness=0.680, answer_relevance=0.767, context_precision=0.767, answer_correctness=0.378</div><div class="ids">relevant: [&#x27;acme_q3.md:1&#x27;]<br>retrieved: [&#x27;acme_q3.md:1&#x27;, &#x27;mark_vii_specs.md:1&#x27;, &#x27;acme_q3.md:2&#x27;]</div></div>
+<div class="case"><div class="q">Q3. Why did the Mark VII shipment slip?</div><div class="a">Based on the document: The Mark VII shipment timeline slipped two weeks due to a firmware issue with [1]</div><div class="scores">hit@3=1.000, recall@3=1.000, precision@3=0.333, mrr=1.000, ndcg@3=1.000, faithfulness=0.700, answer_relevance=0.767, context_precision=0.767, answer_correctness=0.450</div><div class="ids">relevant: [&#x27;acme_q3.md:2&#x27;]<br>retrieved: [&#x27;acme_q3.md:2&#x27;, &#x27;mark_vii_specs.md:0&#x27;, &#x27;acme_q3.md:1&#x27;]</div></div>
+<div class="case"><div class="q">Q4. How heavy is the Mark VII and what is its payload capacity?</div><div class="a">Based on the document: # Mark VII Technical Specifications [1]</div><div class="scores">hit@3=1.000, recall@3=1.000, precision@3=0.333, mrr=1.000, ndcg@3=1.000, faithfulness=0.564, answer_relevance=0.440, context_precision=0.720, answer_correctness=0.300</div><div class="ids">relevant: [&#x27;mark_vii_specs.md:0&#x27;]<br>retrieved: [&#x27;mark_vii_specs.md:0&#x27;, &#x27;acme_q3.md:0&#x27;, &#x27;acme_q3.md:2&#x27;]</div></div>
+<div class="case"><div class="q">Q5. What is the battery life of the Mark VII under peak load?</div><div class="a">Based on the document: ## Power [1]</div><div class="scores">hit@3=1.000, recall@3=1.000, precision@3=0.333, mrr=1.000, ndcg@3=1.000, faithfulness=0.467, answer_relevance=0.300, context_precision=0.900, answer_correctness=0.300</div><div class="ids">relevant: [&#x27;mark_vii_specs.md:1&#x27;]<br>retrieved: [&#x27;mark_vii_specs.md:1&#x27;, &#x27;mark_vii_specs.md:0&#x27;, &#x27;acme_q3.md:2&#x27;]</div></div>
+<div class="case"><div class="q">Q6. Which ROS versions does AcmeOS 4.2 support?</div><div class="a">Based on the document: Our software platform, AcmeOS 4.2, was released in September. The major change [1]</div><div class="scores">hit@3=1.000, recall@3=1.000, precision@3=0.333, mrr=0.333, ndcg@3=0.500, faithfulness=0.720, answer_relevance=0.440, context_precision=0.580, answer_correctness=0.300</div><div class="ids">relevant: [&#x27;mark_vii_specs.md:2&#x27;]<br>retrieved: [&#x27;acme_q3.md:1&#x27;, &#x27;mark_vii_specs.md:0&#x27;, &#x27;mark_vii_specs.md:2&#x27;]</div></div>
+</body>
+</html>
